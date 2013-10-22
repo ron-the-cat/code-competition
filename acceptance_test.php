@@ -3,14 +3,14 @@
 
 include __DIR__ .'/vendor/autoload.php';
 
-function doTest($offset, $total)
+function doTest($offset, $total, $rowsPerPage, $pagesCount)
 {
 
 //----------------------------------------------------------------------------------------------------------------------
 // Invoke your page enumerator here
 //----------------------------------------------------------------------------------------------------------------------
 
-    $nav = new Navigator(10);
+    $nav = new Navigator($rowsPerPage, $pagesCount);
     return strval($nav->accept(array('total_rows' => $total, 'offset' => $offset)));
 }
 
@@ -34,14 +34,22 @@ foreach ([
     ['3 4 5 [6] 7', 50, 70],
     ['3 4 5 6 [7]', 60, 70],
     ['3 4 5 6 [7]', 69, 70],
-] as $case ) {
 
-    list($expected, $offset, $total) = $case;
+    ['[1]', 0, 19, 20],
+    ['1 [2]', 25, 26, 25],
+    ['9 10 [11] 12 13', 250, 500, 25],
+    ['16 17 18 19 [20]', 499, 500, 25],
+    ['6 7 8 [9] 10 11 12', 200, 500, 25, 7],
+    ['14 15 16 17 18 19 [20]', 499, 500, 25, 7],
 
-    $actual = doTest($offset, $total);
+] as $case) {
+
+    list($expected, $offset, $total, $rowsPerPage, $pagesCount) = array_merge($case, array(null, null));
+
+    $actual = doTest($offset, $total, $rowsPerPage ?: 10, $pagesCount ?: 5);
 
     echo 'Expected: ' . $expected . ' Actual: ' . $actual . "\n";
-    assert ($expected === $actual);
+    assert($expected === $actual);
 }
 
 echo "\nOk\n\n";

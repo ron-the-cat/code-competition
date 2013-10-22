@@ -7,9 +7,12 @@ class Navigator
     protected $total;
     protected $currentPage = 1;
 
-    public function __construct($perPage = 10)
+    private $pagesCount;
+
+    public function __construct($perPage = 10, $pagesCount = 5)
     {
         $this->perPage = $perPage;
+        $this->pagesCount = $pagesCount;
         $this->offset = 0;
         $this->total = 0;
     }
@@ -20,18 +23,17 @@ class Navigator
         $totalPages = ceil($this->total / $this->perPage);
 
         if($totalPages == 0) $totalPages++;
-        $startPage = max($currentPage - 2, 1);
-        $endPage = min($currentPage + 2, $totalPages);
+        $startPage = max($currentPage - floor($this->pagesCount/2), 1);
+        $endPage = min($currentPage + floor($this->pagesCount/2), $totalPages);
 
-
-        if($currentPage < 3)
+        if($currentPage < floor($this->pagesCount/2) + 1)
         {
-            $endExcess = -(($currentPage-1) - 2);
+            $endExcess = -(($currentPage-1) - floor($this->pagesCount/2));
             $endPage = min($endPage + $endExcess, $totalPages);
         }
-        if($currentPage > $totalPages - 2)
+        if($currentPage > $totalPages - floor($this->pagesCount/2))
         {
-            $startExcess = 2 - ($totalPages - $currentPage);
+            $startExcess = floor($this->pagesCount/2) - ($totalPages - $currentPage);
             $startPage = max($startPage - $startExcess, 1);
         }
 
