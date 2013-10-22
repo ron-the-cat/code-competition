@@ -1,0 +1,18 @@
+filter:
+    paths:
+        - 'src/*'
+
+before_commands:
+    - "composer install"
+    - "./acceptance_test.php"
+
+tools:
+    php_pdepend: true
+    php_mess_detector: true
+    php_cs_fixer: true
+    php_code_sniffer:
+        config:
+            standard: PSR1
+    php_code_coverage:
+        test_command: ./phpunit
+    php_loc: true
