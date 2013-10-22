@@ -1,18 +1,29 @@
 filter:
     paths:
         - 'src/*'
-
+    excluded_paths:
+        - 'test/*'
 before_commands:
-    - "composer install"
-    - "./acceptance_test.php"
-
+    - 'composer install --prefer-source'
 tools:
-    php_pdepend: true
-    php_mess_detector: true
-    php_cs_fixer: true
+    php_mess_detector:
+        filter:
+            paths: ['src/*']
+    php_cs_fixer:
+        filter:
+            paths: ['src/*']
     php_code_sniffer:
+        filter:
+            paths: ['src/*']
         config:
             standard: PSR1
     php_code_coverage:
-        test_command: ./phpunit
+        test_command: './acceptance_test.php && ./phpunit'
+        filter:
+            paths: ['src/*']
+        config_path: ./
+    php_cpd:
+        filter:
+            paths: ['src/*']
     php_loc: true
+    php_pdepend: true
