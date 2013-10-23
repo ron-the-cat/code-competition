@@ -1,11 +1,12 @@
+Метрики этого решения: 
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/quality-score.png?s=425109351a8488b0b72903e0132a4cd07fb39c5f)](https://scrutinizer-ci.com/g/Magomogo/code-competition/) [![Code Coverage](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/coverage.png?s=2202d932963da16b3956425579078cc8356e148d)](https://scrutinizer-ci.com/g/Magomogo/code-competition/)
+
+
 Конкурс красоты кода
 ====================
 
-Компания XIAG проводит первый конкурс красоты кода.
+Компания XIAG проводит первый конкурс красоты кода. Цель конкурса - поощрение хорошего стиля.
 
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/quality-score.png?s=425109351a8488b0b72903e0132a4cd07fb39c5f)](https://scrutinizer-ci.com/g/Magomogo/code-competition/)
-
-[![Code Coverage](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/coverage.png?s=2202d932963da16b3956425579078cc8356e148d)](https://scrutinizer-ci.com/g/Magomogo/code-competition/)
 
 Правила
 =======
@@ -15,9 +16,10 @@
 - Разработанный код должен пройти ./acceptance_test.php, необходимо изменить функцию doTest для вызова своей реализации
   задания
 - Покрытие кода тестами рассчитывает phpunut, тесты должны быть расположены в директории ./test
-- Оценка красоты кода проводится голосованием с использованием формальных метрик, которые рассчитавает Scrutinizer:
-  https://scrutinizer-ci.com/g/Magomogo/code-competition/ к голосованию допускаются любые пользователи, голос отдаётся
-  звездочкой, поставленной репозиторию участника.
+- Оценка красоты кода проводится голосованием с использованием формальных метрик, которые рассчитывает Scrutinizer:
+  https://scrutinizer-ci.com/g/Magomogo/code-competition/ (участник должен подключить свой репозиторий и обновить ссылки
+  на метрики в этом документе)
+- К голосованию допускаются любые пользователи, голос отдаётся звездочкой, поставленной репозиторию участника
 
 Установка
 =========
@@ -39,3 +41,12 @@
 Результатом должна быть текстовая строка с номерами страниц, и выделенной текущей страницей:
 
     3 4 [5] 6 7
+    
+Голосование
+===========
+
+После того, как участник выполнит задание, он должен вернуть pull request. Список решенных заданий доступен
+для голосования в списке пулл реквестов: https://github.com/Magomogo/code-competition/pulls
+
+
+    
