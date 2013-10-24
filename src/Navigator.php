@@ -21,31 +21,43 @@ class Navigator
     {
         $currentPage = floor($this->offset / $this->perPage) + 1;
         $totalPages = ceil($this->total / $this->perPage);
-
         if($totalPages == 0) $totalPages++;
-        $startPage = max($currentPage - floor($this->maxNavigatorSize/2), 1);
-        $endPage = min($currentPage + floor($this->maxNavigatorSize/2), $totalPages);
-
-        if($currentPage < floor($this->maxNavigatorSize/2) + 1)
-        {
+        $startPage = $currentPage - floor($this->maxNavigatorSize/2);
+        if ($startPage < 1) $startPage = 1;
+        $endPage = $currentPage + floor($this->maxNavigatorSize/2);
+        if ($endPage > $totalPages) $endPage = $totalPages;
+        if($currentPage < floor($this->maxNavigatorSize/2) + 1) {
             $endExcess = -(($currentPage-1) - floor($this->maxNavigatorSize/2));
-            $endPage = min($endPage + $endExcess, $totalPages);
-        }
-        if($currentPage > $totalPages - floor($this->maxNavigatorSize/2))
-        {
-            $startExcess = floor($this->maxNavigatorSize/2) - ($totalPages - $currentPage);
-            $startPage = max($startPage - $startExcess, 1);
+            $endPage = $endPage + $endExcess;
+
+            if ($endPage > $totalPages) {
+                $endPage = $totalPages;
+            }
+
         }
 
-        $paginator = array();
+        if($currentPage > $totalPages - floor($this->maxNavigatorSize/2)) {
+            $startExcess = floor($this->maxNavigatorSize/2) - ($totalPages - $currentPage);
+            $startPage = $startPage - $startExcess;
+
+            if ($startPage < 1) {
+                $startPage = 1;
+            }
+        }
+
+        $paginator = '';
 
         for($i = $startPage; $i <= $endPage; $i++)
         {
-            if($i == $currentPage) $paginator[] = "[$i]";
-            else $paginator[] = $i;
+            if($i == $currentPage) $paginator .= "[$i] ";
+            else $paginator .= $i . ' ';
         }
 
-        return implode(' ', $paginator);
+        if (substr($paginator, strlen($paginator) - 1 , 1) == ' ') {
+            $paginator = substr($paginator, 0, strlen($paginator) - 1 );
+        }
+
+        return $paginator;
 
     }
 
