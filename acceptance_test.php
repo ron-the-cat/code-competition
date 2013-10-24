@@ -3,14 +3,14 @@
 
 include __DIR__ .'/vendor/autoload.php';
 
-function doTest($offset, $total, $rowsPerPage, $pagesCount)
+function doTest($offset, $total, $rowsPerPage, $maxNavigatorSize)
 {
 
 //----------------------------------------------------------------------------------------------------------------------
 // Invoke your page enumerator here
 //----------------------------------------------------------------------------------------------------------------------
 
-    $nav = new Navigator($rowsPerPage, $pagesCount);
+    $nav = new Navigator($rowsPerPage, $maxNavigatorSize);
     return strval($nav->accept(array('total_rows' => $total, 'offset' => $offset)));
 }
 
