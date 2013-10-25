@@ -32,20 +32,23 @@ Installation
 Problem
 =======
 
-Необходимо написать разбиватель списка на страницы. Входные параметры:
+Implement a rows list pagination navigator
 
+## Input:
 
-- $offset, номер первой показываемой строки
-- $total, общее количество строк
-- $rowsPerPage, количество строк на страницу
-- $maxNavigatorSize, количество номеров страниц, которые нужно показать
+- `$offset` index of the first displayed row
+- `$total` total amount of rows in the list
+- `$rowsPerPage` maximum page size
+- `$maxNavigatorSize` how many page numbers the navigator should display
 
-Результатом должна быть текстовая строка с номерами страниц, и выделенной текущей страницей:
+## Output:
+
+A string of text with page numbers, where the current page is wrapped into square brackets:
 
     3 4 [5] 6 7
 
-Голосование
-===========
+Voting
+======
 
-После того, как участник выполнит задание, он должен вернуть pull request. Список решенных заданий доступен
-для голосования в списке пулл реквестов: https://github.com/Magomogo/code-competition/pulls
+After the problem is solved, the participant makes a pull request. The solutions are accessible for
+voting in the [pull requests list](https://github.com/Magomogo/code-competition/pulls).
