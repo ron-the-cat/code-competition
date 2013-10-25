@@ -1,52 +1,54 @@
-Метрики этого решения: 
+This solution's metrics
+
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/quality-score.png?s=425109351a8488b0b72903e0132a4cd07fb39c5f)](https://scrutinizer-ci.com/g/Magomogo/code-competition/) [![Code Coverage](https://scrutinizer-ci.com/g/Magomogo/code-competition/badges/coverage.png?s=2202d932963da16b3956425579078cc8356e148d)](https://scrutinizer-ci.com/g/Magomogo/code-competition/)
 
+Code beauty contest
+===================
 
-Конкурс красоты кода
-====================
-
-Компания XIAG проводит первый конкурс красоты кода. Цель конкурса - поощрение хорошего стиля.
+XIAG is running the first Code Beauty Contest to encourage a good coding style.
 
 
-Правила
-=======
+Rules
+=====
 
-- Участник должен иметь github - аккаунт
-- Форкнув этот репозиторий разработчик объявляет о своем участии в конкурсе
-- Разработанный код должен пройти ./acceptance_test.php, необходимо изменить функцию doTest для вызова своей реализации
-  задания
-- Покрытие кода тестами рассчитывает phpunut, тесты должны быть расположены в директории ./test
-- Оценка красоты кода проводится голосованием с использованием формальных метрик, которые рассчитывает Scrutinizer:
-  https://scrutinizer-ci.com/g/Magomogo/code-competition/ (участник должен подключить свой репозиторий и обновить ссылки
-  на метрики в этом документе)
-- К голосованию допускаются любые пользователи, голос отдаётся звездочкой, поставленной репозиторию участника
+- A participant must have a [GitHub](https://github.com) account
+- Forking this repository declares the contest participation
+- Your code must pass `./acceptance_test.php`; please replace the `doTest()` function to invoke your
+  own implementation
+- Test coverage is calculated by [PHPUnit](http://www.phpunit.de); the tests must reside in `./test`
+- The solutions' _beauty_ is rated based on an open voting, and on the formal metrics provided by
+  [Scrutinizer](https://scrutinizer-ci.com/g/Magomogo/code-competition/) -- the participants have to
+  enable their repositories at [scrutinizer-ci](https://scrutinizer-ci.com/), and update the metrics
+  links in this document
+- Any GitHub users can vote by starring the participant's repository
 
-Установка
-=========
+Installation
+============
 
     composer install --dev
     ./acceptance_test.php
     ./phpunit
 
-Задание
+Problem
 =======
 
-Необходимо написать разбиватель списка на страницы. Входные параметры:
+Implement a rows list pagination navigator
 
-- $offset, номер первой показываемой строки
-- $total, общее количество строк
-- $rowsPerPage, количество строк на страницу
-- $maxNavigatorSize, количество номеров страниц, которые нужно показать
+## Input:
 
-Результатом должна быть текстовая строка с номерами страниц, и выделенной текущей страницей:
+- `$offset` index of the first displayed row
+- `$total` total amount of rows in the list
+- `$rowsPerPage` maximum page size
+- `$maxNavigatorSize` how many page numbers the navigator should display
+
+## Output:
+
+A string of text with page numbers, where the current page is wrapped into square brackets:
 
     3 4 [5] 6 7
-    
-Голосование
-===========
 
-После того, как участник выполнит задание, он должен вернуть pull request. Список решенных заданий доступен
-для голосования в списке пулл реквестов: https://github.com/Magomogo/code-competition/pulls
+Voting
+======
 
-
-    
+After the problem is solved, the participant makes a pull request. The solutions are accessible for
+voting in the [pull requests list](https://github.com/Magomogo/code-competition/pulls).
