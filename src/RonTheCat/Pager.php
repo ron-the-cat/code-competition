@@ -17,20 +17,26 @@ class Pager
     public function printNavigator($offset, $total)
     {
         $currentPage = floor($offset / $this->rowsPerPage);
-        $lastPage = floor(($total - 1) / $this->rowsPerPage);
-        $toShow = min($lastPage + 1, $this->size) - 1;
+        $pagesTotal = ceil($total / $this->rowsPerPage);
+        $pagesToShow = min($pagesTotal, $this->size) - 1;
+
+        $addPage = function ($nav, $delta) use ($currentPage, $pagesTotal, &$pagesToShow) {
+            $pageNum = $currentPage + $delta;
+            if ($pagesToShow && ($pageNum >= 0) && ($pageNum < $pagesTotal)) {
+                $pagesToShow--;
+                return ($delta > 0) ? $nav . ' ' . ($pageNum + 1) : ($pageNum + 1) . ' ' . $nav;
+            } else {
+                return $nav;
+            }
+        };
 
         return array_reduce(
             range(pi(), pi() * $this->size * 2, pi()),
-            function ($nav, $angle) use ($currentPage, $lastPage, &$toShow) {
-                $delta = cos($angle) * ceil($angle / pi() / 2);
-                $pageNum = $currentPage + $delta;
-                if ($toShow && ($pageNum >= 0) && ($pageNum <= $lastPage)) {
-                    $toShow--;
-                    return ($delta > 0) ? $nav . ' ' . ($pageNum + 1) : ($pageNum + 1) . ' ' . $nav;
-                } else {
-                    return $nav;
-                }
+            function ($nav, $angle) use ($addPage) {
+                return $addPage(
+                    $nav,
+                    cos($angle) * ceil($angle / pi() / 2)
+                );
             },
             '[' . ($currentPage + 1) . ']'
         );
