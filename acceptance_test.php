@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+use RonTheCat\Pager;
+
 include __DIR__ .'/vendor/autoload.php';
 
 function doTest($offset, $total, $rowsPerPage, $maxNavigatorSize)
@@ -10,8 +12,8 @@ function doTest($offset, $total, $rowsPerPage, $maxNavigatorSize)
 // Invoke your page enumerator here
 //----------------------------------------------------------------------------------------------------------------------
 
-    $nav = new Navigator($rowsPerPage, $maxNavigatorSize);
-    return strval($nav->accept(array('total_rows' => $total, 'offset' => $offset)));
+    $nav = new Pager($rowsPerPage, $maxNavigatorSize);
+    return $nav->printNavigator($offset, $total);
 }
 
 assert_options(ASSERT_BAIL, 1);
