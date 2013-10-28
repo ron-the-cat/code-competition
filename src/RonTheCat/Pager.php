@@ -8,7 +8,7 @@ class Pager
 
     private $size;
 
-    public function __construct($rowsPerPage, $size = 5)
+    public function __construct($rowsPerPage, $size)
     {
         $this->rowsPerPage = $rowsPerPage;
         $this->size = $size;
